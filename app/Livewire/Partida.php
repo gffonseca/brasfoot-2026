@@ -19,6 +19,7 @@ class Partida extends Component
     public int $tatica = 0;
     public int $ingresso = 40;
     public ?int $ultimoMatchId = null;
+    public ?string $erro = null;
 
     public function mount(): void
     {
@@ -60,14 +61,21 @@ class Partida extends Component
 
     public function jogar(PlayRoundAction $action): void
     {
-        $this->salvarPrefs();
-        $round = $action->execute($this->season->fresh('clubs'), $this->tatica, $this->ingresso);
-        $this->season->refresh();
-        if ($round) {
-            $meu = $round->matches->first(fn($m) =>
-                $m->home_club_id === $this->season->club_do_usuario_id
-                || $m->away_club_id === $this->season->club_do_usuario_id);
-            $this->ultimoMatchId = $meu?->id;
+        $this->erro = null;
+        try {
+            $this->salvarPrefs();
+            $round = $action->execute($this->season->fresh('clubs'), $this->tatica, $this->ingresso);
+            $this->season->refresh();
+            if ($round) {
+                $meu = $round->matches->first(fn($m) =>
+                    $m->home_club_id === $this->season->club_do_usuario_id
+                    || $m->away_club_id === $this->season->club_do_usuario_id);
+                $this->ultimoMatchId = $meu?->id;
+            }
+        } catch (\Throwable $e) {
+            report($e);
+            $this->erro = get_class($e).' :: '.$e->getMessage()
+                .' @ '.basename($e->getFile()).':'.$e->getLine();
         }
     }
 

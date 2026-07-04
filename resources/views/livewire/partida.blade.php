@@ -1,3 +1,9 @@
+<div>
+  @if($erro)
+    <div class="bg-red-900/70 border border-red-500 text-red-100 rounded-lg p-3 mb-4 text-sm break-words">
+      <b>Erro ao jogar a partida:</b><br>{{ $erro }}
+    </div>
+  @endif
 <div class="grid md:grid-cols-2 gap-4">
   <div class="bg-slate-800 rounded-xl p-5">
     <h2 class="font-bold mb-3">Próxima partida</h2>
@@ -69,4 +75,5 @@
       @endif
     @endif
   </div>
+</div>
 </div>
