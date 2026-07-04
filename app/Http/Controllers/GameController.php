@@ -15,7 +15,7 @@ class GameController extends Controller
 {
     public function home()
     {
-        $season = Season::latest()->first();
+        $season = Season::has('clubs')->latest()->first();
         $clubs = Club::orderBy('divisao')->orderByDesc('base_forca')->get();
         $tabela = $season ? $this->montarTabela($season) : [];
         // pode iniciar estadual? (clube do usuário tem >=4 na UF)
@@ -38,14 +38,14 @@ class GameController extends Controller
 
     public function startEstadual(Request $r, StartEstadualAction $action)
     {
-        $season = Season::latest()->firstOrFail();
+        $season = Season::has('clubs')->latest()->firstOrFail();
         $action->execute($season->club_do_usuario_id);
         return redirect()->route('game.home');
     }
 
     public function advance(Request $r, AdvanceSeasonAction $action)
     {
-        $season = Season::latest()->firstOrFail();
+        $season = Season::has('clubs')->latest()->firstOrFail();
         $action->execute($season);
         return redirect()->route('game.home');
     }
