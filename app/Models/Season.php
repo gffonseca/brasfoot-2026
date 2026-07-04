@@ -12,7 +12,7 @@ class Season extends Model
 
     public function clubs(): BelongsToMany
     {
-        return $this->belongsToMany(Club::class)->withPivot('forma');
+        return $this->belongsToMany(Club::class, 'season_club')->withPivot('forma');
     }
 
     public function rounds(): HasMany
