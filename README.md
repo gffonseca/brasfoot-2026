@@ -1,4 +1,4 @@
-# Brasfoot 2026 — Projeto Laravel completo
+# JogaFoot 2026 — Projeto Laravel completo
 
 Recriação do clássico manager de futebol. **Este é o projeto Laravel 11 completo** (esqueleto do
 framework já incluído + nosso código), pronto para `composer install` e deploy. A engine de
@@ -60,5 +60,5 @@ tests/Feature        Transfer, PlayRound, AdvanceSeason (acesso/rebaixamento), E
 
 ## Propriedade intelectual
 
-Obra independente de fã. "Brasfoot"® é marca de Emmanuel dos Santos; dados, jogadores e escudos
+Obra independente de fã. "JogaFoot"® é marca de Emmanuel dos Santos; dados, jogadores e escudos
 aqui são **fictícios/genéricos**. Ver o Documento Técnico do projeto para as ressalvas de IP.

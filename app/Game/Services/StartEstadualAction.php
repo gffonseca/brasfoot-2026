@@ -7,7 +7,7 @@ use App\Models\Season;
 
 /**
  * Inicia um campeonato estadual (returno duplo) com os clubes de uma UF.
- * Diferencial histórico do Brasfoot. Requer >= 4 clubes na UF.
+ * Diferencial histórico do JogaFoot. Requer >= 4 clubes na UF.
  */
 class StartEstadualAction
 {

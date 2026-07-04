@@ -1,4 +1,4 @@
-# Brasfoot 2026 — Fase 0 (pacote drop-in Laravel)
+# JogaFoot 2026 — Fase 0 (pacote drop-in Laravel)
 
 Núcleo do jogo pronto para plugar num **Laravel 11** novo e subir no **Railway**.
 A engine de simulação é um porte fiel do `engine.js` já validado (28.000 jogos, invariantes OK)
@@ -107,7 +107,7 @@ Valores sempre em **centavos**.
 - **16 clubes** em **Série A** e **Série B** (coluna `divisao`). Ao escolher o clube, você começa na divisão dele.
 - **Acesso/rebaixamento**: ao encerrar a temporada, "Avançar temporada" aplica **2 sobem / 2 descem**
   (`AdvanceSeasonAction` — usa a tabela real da sua divisão e simula a outra divisão headless) e cria o próximo ano.
-- **Campeonato Estadual**: diferencial histórico do Brasfoot. Com ≥4 clubes na UF do seu clube, dá para iniciar
+- **Campeonato Estadual**: diferencial histórico do JogaFoot. Com ≥4 clubes na UF do seu clube, dá para iniciar
   (ex.: **Paraense** com Remo, Paysandu, Águia e Tuna). `StartEstadualAction`.
 
 ```

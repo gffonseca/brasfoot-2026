@@ -41,7 +41,9 @@ class ClubSeeder extends Seeder
 
     public function run(): void
     {
-        \Illuminate\Support\Facades\DB::statement('TRUNCATE clubs, players, seasons, season_club, rounds, matches, transfers, finance_ledger, lineups RESTART IDENTITY CASCADE');
+        if (\App\Models\Club::query()->exists()) {
+            return; // ja semeado: preserva o estado do jogo entre deploys/restarts
+        }
         foreach (self::CLUBS as $i => $c) {
             $club = Club::create([
                 'nome'=>$c['nome'],'abbr'=>$c['abbr'],'cor'=>$c['cor'],'uf'=>$c['uf'],'divisao'=>$c['div'],
