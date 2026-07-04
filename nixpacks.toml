@@ -1,0 +1,11 @@
+# Config Nixpacks para Railway. Ajuste a versão do PHP conforme necessário.
+providers = ["php"]
+
+[phases.setup]
+nixPkgs = ["php83", "php83Packages.composer"]
+
+[phases.install]
+cmds = ["composer install --no-dev --optimize-autoloader --no-interaction"]
+
+[phases.build]
+cmds = ["php artisan config:cache", "php artisan route:cache"]
