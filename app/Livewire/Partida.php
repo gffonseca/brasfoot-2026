@@ -53,10 +53,18 @@ class Partida extends Component
 
     public function salvarPrefs(): void
     {
-        Lineup::updateOrCreate(
-            ['season_id' => $this->season->id, 'club_id' => $this->season->club_do_usuario_id],
-            ['tatica' => $this->tatica, 'ingresso' => $this->ingresso]
-        );
+        $lineup = Lineup::firstOrNew([
+            'season_id' => $this->season->id,
+            'club_id' => $this->season->club_do_usuario_id,
+        ]);
+        $lineup->tatica = $this->tatica;
+        $lineup->ingresso = $this->ingresso;
+        if (empty($lineup->starters)) {
+            $lineup->formacao = $lineup->formacao ?: '4-4-2';
+            $club = Club::with('players')->find($this->season->club_do_usuario_id);
+            $lineup->starters = $club ? Lineup::melhorXI($club->players, $lineup->formacao) : [];
+        }
+        $lineup->save();
     }
 
     public function jogar(PlayRoundAction $action): void
