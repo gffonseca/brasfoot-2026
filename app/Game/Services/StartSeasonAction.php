@@ -22,6 +22,11 @@ class StartSeasonAction
         $divisao = $userClub->divisao;
         $clubs = Club::where('divisao', $divisao)->get();
 
+        // Novo jogo = estado limpo: remove temporadas anteriores (a cascata apaga
+        // rodadas, partidas, escalações e pivôs). Evita temporadas duplicadas e a
+        // seleção não-determinística que fazia a classificação aparecer zerada.
+        Season::query()->delete();
+
         return $this->criarLiga(
             clubs: $clubs,
             tipo: 'nacional',

@@ -18,7 +18,7 @@ class Mercado extends Component
 
     public function mount(): void
     {
-        $this->season = Season::has('clubs')->latest()->firstOrFail();
+        $this->season = Season::has('clubs')->orderByDesc('id')->firstOrFail();
     }
 
     #[Computed]

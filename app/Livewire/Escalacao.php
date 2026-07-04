@@ -18,7 +18,7 @@ class Escalacao extends Component
 
     public function mount(): void
     {
-        $this->season = Season::has('clubs')->latest()->firstOrFail();
+        $this->season = Season::has('clubs')->orderByDesc('id')->firstOrFail();
         $lineup = $this->lineup();
         $this->formacao = $lineup->formacao;
         $this->starters = $lineup->starters ?? [];

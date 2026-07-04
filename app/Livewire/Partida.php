@@ -23,7 +23,7 @@ class Partida extends Component
 
     public function mount(): void
     {
-        $this->season = Season::has('clubs')->latest()->firstOrFail();
+        $this->season = Season::has('clubs')->orderByDesc('id')->firstOrFail();
         $lineup = Lineup::where('season_id', $this->season->id)
             ->where('club_id', $this->season->club_do_usuario_id)->first();
         $this->tatica = $lineup->tatica ?? 0;

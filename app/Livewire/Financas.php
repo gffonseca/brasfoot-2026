@@ -17,7 +17,7 @@ class Financas extends Component
 
     public function mount(): void
     {
-        $this->season = Season::has('clubs')->latest()->firstOrFail();
+        $this->season = Season::has('clubs')->orderByDesc('id')->firstOrFail();
     }
 
     private function clubId(): int { return $this->season->club_do_usuario_id; }
