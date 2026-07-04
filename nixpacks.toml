@@ -1,4 +1,3 @@
-# Config Nixpacks para Railway. Ajuste a versão do PHP conforme necessário.
 providers = ["php"]
 
 [phases.setup]
@@ -8,9 +7,4 @@ nixPkgs = ["php83", "php83Packages.composer"]
 cmds = ["composer install --no-dev --optimize-autoloader --no-interaction"]
 
 [phases.build]
-cmds = [
-  "php artisan config:cache",
-  "php artisan route:cache",
-  "mkdir -p public/livewire",
-  "cp $(find vendor/livewire -name livewire.min.js | head -1) public/livewire/livewire.min.js"
-]
+cmds = []
